@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How To Use COMET — Eight Stakeholders, Eight Concrete Wins</title>
+  <meta name="description" content="COMET is a free, open vocabulary that makes carbon data interoperable. This page shows exactly how it helps you — with a real-world example for each role in the carbon data ecosystem.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f5f4f0;
+      --bg-alt: #efede8;
+      --bg-dark: #1a1a18;
+      --bg-mid: #252520;
+      --text: #1c1c1a;
+      --text-secondary: #4a4a45;
+      --text-muted: #7a7a74;
+      --accent: #c8360a;
+      --accent-light: #e8470f;
+      --accent-bg: #fdf0ec;
+      --green: #1a6b3c;
+      --blue: #1a3a6b;
+      --gold: #9a7c2f;
+      --border: #d8d7d0;
+      --border-dark: #3a3a35;
+      --card-bg: #ffffff;
+      --rule: #c8c7c0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── MASTHEAD ─────────────────────────────────────────────── */
+
+    .masthead {
+      background-color: var(--bg-dark);
+      color: #e8e6e0;
+      padding: 3.5rem 2rem 3rem;
+    }
+
+    .masthead-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9a9890;
+      margin-bottom: 1.6rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #7a7870;
+      text-decoration: none;
+      margin-bottom: 1.4rem;
+      transition: color 0.15s ease;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    .masthead-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #f0ede6;
+      margin-bottom: 1rem;
+    }
+
+    .masthead-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #b8b6b0;
+      margin-bottom: 1.75rem;
+      letter-spacing: 0.01em;
+    }
+
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid var(--border-dark);
+      margin-bottom: 1.75rem;
+    }
+
+    .masthead-description {
+      font-size: clamp(1rem, 2vw, 1.0625rem);
+      font-weight: 300;
+      color: #d0cec8;
+      line-height: 1.65;
+      max-width: 700px;
+    }
+
+    /* ─── STICKY NAV PILLS ─────────────────────────────────────── */
+
+    .nav-pills-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-pills-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0.75rem 2rem;
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      align-items: center;
+    }
+
+    .nav-pills-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-pill {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background-color: transparent;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+      cursor: pointer;
+    }
+
+    .nav-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .nav-pill.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* ─── SHARED SECTION STYLES ────────────────────────────────── */
+
+    .stakeholder-section {
+      padding: 4.5rem 2rem;
+    }
+
+    .stakeholder-section:nth-child(odd) {
+      background-color: var(--bg);
+    }
+
+    .stakeholder-section:nth-child(even) {
+      background-color: var(--bg-alt);
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 2rem;
+    }
+
+    /* ─── TWO-COLUMN LAYOUT ────────────────────────────────────── */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 60% 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 720px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+    }
+
+    /* ─── LEFT COLUMN CONTENT ──────────────────────────────────── */
+
+    .col-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .col-text {
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .col-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ─── EXAMPLE CARD ─────────────────────────────────────────── */
+
+    .example-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem 1.5rem 1.5rem 1.25rem;
+    }
+
+    .example-card-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .example-row {
+      margin-bottom: 0.85rem;
+    }
+
+    .example-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .example-row-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .example-row-value {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    .example-row-value.before {
+      color: #7a4a40;
+    }
+
+    .example-row-value.after {
+      color: #2a5a3a;
+      font-weight: 500;
+    }
+
+    /* ─── QUICK WIN ────────────────────────────────────────────── */
+
+    .quick-win {
+      background-color: var(--accent-bg);
+      border: 1px solid #e8b0a0;
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .quick-win-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+      padding-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .quick-win-text {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    /* ─── GET STARTED ──────────────────────────────────────────── */
+
+    .get-started {
+      margin-top: 2rem;
+    }
+
+    .get-started-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .get-started-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .get-started-step {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+
+    .step-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1.6;
+    }
+
+    .step-text {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .step-text code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82em;
+      background-color: #ede8e0;
+      padding: 0.1em 0.4em;
+      color: var(--text);
+    }
+
+    /* ─── BOTTOM CTA SECTION ───────────────────────────────────── */
+
+    .cta-section {
+      background-color: var(--bg-dark);
+      color: #e0ddd8;
+      padding: 4.5rem 2rem;
+    }
+
+    .cta-section .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .cta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 600;
+      color: #f0ede6;
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+
+    .cta-rule {
+      border: none;
+      border-top: 1px solid var(--border-dark);
+      margin-bottom: 2.25rem;
+    }
+
+    .cta-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 720px) {
+      .cta-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cta-card {
+      display: block;
+      text-decoration: none;
+      background-color: #252520;
+      border: 1px solid var(--border-dark);
+      padding: 1.75rem 1.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background-color: var(--border-dark);
+      transition: background-color 0.18s ease;
+    }
+
+    .cta-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .cta-card:hover::before {
+      background-color: var(--accent);
+    }
+
+    .cta-card-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #5a5855;
+      margin-bottom: 0.85rem;
+    }
+
+    .cta-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #d0cec8;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+      transition: color 0.18s ease;
+    }
+
+    .cta-card:hover .cta-card-title {
+      color: var(--accent);
+    }
+
+    .cta-card-body {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #7a7870;
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-card-action {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cta-card-action::after {
+      content: '\2192';
+      font-size: 0.85rem;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+
+    footer {
+      background-color: var(--bg-dark);
+      color: #6a6a64;
+      padding: 3rem 2rem;
+      border-top: 1px solid #1e1e1c;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #d0cec8;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a5855;
+      margin-bottom: 2rem;
+    }
+
+    .footer-rule {
+      border: none;
+      border-top: 1px solid #2e2e2a;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 2rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: #7a7870;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: #c8360a;
+    }
+
+    .footer-attribution {
+      font-size: 0.8125rem;
+      color: #4a4a45;
+    }
+
+    /* ─── UTILITY ───────────────────────────────────────────────── */
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead" role="banner">
+    <div class="masthead-inner">
+      <p class="eyebrow">COMET &middot; Getting Started</p>
+      <a href="index.html" class="back-link">&larr; Back to COMET home</a>
+      <h1 class="masthead-title">How To Use COMET</h1>
+      <p class="masthead-subtitle">Eight stakeholders. Eight concrete wins. One shared vocabulary.</p>
+      <hr class="masthead-rule" aria-hidden="true">
+      <p class="masthead-description">COMET is a free, open vocabulary that makes carbon data interoperable. This page shows exactly how it helps you &mdash; with a real-world example for each role in the carbon data ecosystem.</p>
+    </div>
+  </header>
+
+  <!-- STICKY NAV PILLS -->
+  <nav class="nav-pills-wrapper" aria-label="Jump to stakeholder section">
+    <div class="nav-pills-inner">
+      <a href="#buyers" class="nav-pill" data-section="buyers">Buyers</a>
+      <a href="#supply-chain" class="nav-pill" data-section="supply-chain">Supply Chain</a>
+      <a href="#lca" class="nav-pill" data-section="lca">LCA</a>
+      <a href="#verifiers" class="nav-pill" data-section="verifiers">Verifiers</a>
+      <a href="#platforms" class="nav-pill" data-section="platforms">Platforms</a>
+      <a href="#regulators" class="nav-pill" data-section="regulators">Regulators</a>
+      <a href="#finance" class="nav-pill" data-section="finance">Finance</a>
+      <a href="#credit-developers" class="nav-pill" data-section="credit-developers">Credit Developers</a>
+    </div>
+  </nav>
+
+  <!-- SECTION 1: INDUSTRIAL BUYERS -->
+  <section class="stakeholder-section" id="buyers" aria-labelledby="buyers-title">
+    <div class="section-inner">
+      <p class="section-label">01 &middot; Industrial Buyers (Procurement)</p>
+      <h2 class="section-title" id="buyers-title">Compare any supplier&rsquo;s carbon footprint on equal footing</h2>
+      <hr class="section-rule" aria-hidden="true">
+
+      <div class="two-col">
+        <div class="col-left">
+          <p class="col-label">The Problem</p>
+          <p class="col-text">Today you receive PCFs from 50 suppliers in 50 different formats. Supplier A reports in CO&#x2082;e per kg using GaBi, Supplier B reports per tonne using SimaPro with different allocation methods. You cannot compare them without weeks of manual normalization.</p>
+          <p class="col-label">With COMET</p>
+          <p class="col-text">COMET gives every PCF a shared structure. When your suppliers tag their data with COMET classes, you get comparable footprints automatically &mdash; same functional unit, same system boundary definition, same data quality score. Your procurement system ingests COMET-tagged data and ranks suppliers by verified carbon intensity.</p>
+        </div>
+        <div class="col-right">
+          <div class="example-card" role="region" aria-label="Buyers example">
+            <p class="example-card-label">Example</p>
+            <div class="example-row">
+              <p class="example-row-label">Scenario</p>
+              <p class="example-row-value">A steel buyer in Germany receives CBAM-ready data from 3 suppliers</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">Before</p>
+              <p class="example-row-value before">3 PDFs, 3 formats, 2 weeks of consultant time to normalize. &euro;15,000/quarter.</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">After</p>
+              <p class="example-row-value after">3 COMET-tagged JSON payloads. Auto-compared in 30 seconds. Procurement dashboard updated instantly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-win" role="note">
+        <span class="quick-win-label">Quick Win</span>
+        <p class="quick-win-text">Save 80% of supplier carbon data reconciliation time. Auto-generate CBAM declarations from structured data.</p>
+      </div>
+
+      <div class="get-started">
+        <p class="get-started-label">Get Started</p>
+        <ol class="get-started-steps" aria-label="Steps to get started as an industrial buyer">
+          <li class="get-started-step">
+            <span class="step-number">01</span>
+            <span class="step-text">Ask suppliers to tag PCF data using COMET&rsquo;s L4 PCF classes</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">02</span>
+            <span class="step-text">Import data using COMET JSON-LD context (copy the <code>@context</code> URL into your system)</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">03</span>
+            <span class="step-text">Compare footprints using standardized <code>FunctionalUnit</code> and <code>SystemBoundary</code> fields</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: SUPPLY CHAIN MANAGERS -->
+  <section class="stakeholder-section" id="supply-chain" aria-labelledby="supply-chain-title">
+    <div class="section-inner">
+      <p class="section-label">02 &middot; Supply Chain Managers (Scope 3 Reporting)</p>
+      <h2 class="section-title" id="supply-chain-title">Turn Scope 3 from a guessing game into measured data</h2>
+      <hr class="section-rule" aria-hidden="true">
+
+      <div class="two-col">
+        <div class="col-left">
+          <p class="col-label">The Problem</p>
+          <p class="col-text">Scope 3 accounts for 70&ndash;90% of most companies&rsquo; emissions, but you&rsquo;re relying on spend-based estimates and industry averages. Category 1 (purchased goods) alone might have hundreds of suppliers, and you have no way to collect, validate, or aggregate their actual footprint data.</p>
+          <p class="col-label">With COMET</p>
+          <p class="col-text">COMET maps all 15 GHG Protocol Scope 3 categories to specific ontology classes. Your suppliers report using COMET&rsquo;s <code style="font-family:'DM Mono',monospace;font-size:0.82em;background:#ede8e0;padding:0.1em 0.4em;">SupplyChainLink</code> and <code style="font-family:'DM Mono',monospace;font-size:0.82em;background:#ede8e0;padding:0.1em 0.4em;">ActivityDataRecord</code> classes. The data arrives structured, validated against SHACL shapes, and ready to aggregate &mdash; replacing estimates with measured values.</p>
+        </div>
+        <div class="col-right">
+          <div class="example-card" role="region" aria-label="Supply chain example">
+            <p class="example-card-label">Example</p>
+            <div class="example-row">
+              <p class="example-row-label">Scenario</p>
+              <p class="example-row-value">An automotive OEM collects Scope 3 Category 1 data from 200 tier-1 suppliers</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">Before</p>
+              <p class="example-row-value before">CDP questionnaires + manual spreadsheets. 60% response rate, 30% usable data. 6-month cycle.</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">After</p>
+              <p class="example-row-value after">COMET-tagged PCFs arrive via PACT v3 API. 95% coverage. Monthly updates. Primary data share tracked per supplier.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-win" role="note">
+        <span class="quick-win-label">Quick Win</span>
+        <p class="quick-win-text">Increase Scope 3 primary data coverage from ~30% to 90%+ and reduce reporting cycle from 6 months to monthly.</p>
+      </div>
+
+      <div class="get-started">
+        <p class="get-started-label">Get Started</p>
+        <ol class="get-started-steps" aria-label="Steps to get started as a supply chain manager">
+          <li class="get-started-step">
+            <span class="step-number">01</span>
+            <span class="step-text">Map your Scope 3 categories to COMET classes using the Scope 3 mapping table</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">02</span>
+            <span class="step-text">Send suppliers the COMET data template (JSON-LD with required fields)</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">03</span>
+            <span class="step-text">Validate incoming data using COMET SHACL shapes (auto-reject incomplete submissions)</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: LCA PRACTITIONERS -->
+  <section class="stakeholder-section" id="lca" aria-labelledby="lca-title">
+    <div class="section-inner">
+      <p class="section-label">03 &middot; LCA Practitioners (Technical Measurement)</p>
+      <h2 class="section-title" id="lca-title">Export your LCA results once, and every system reads them</h2>
+      <hr class="section-rule" aria-hidden="true">
+
+      <div class="two-col">
+        <div class="col-left">
+          <p class="col-label">The Problem</p>
+          <p class="col-text">You model a product in SimaPro or openLCA, generate a beautiful PCF, then spend days reformatting it for each downstream consumer. The CBAM authority wants XML. The buyer wants a PDF. The PACT platform wants JSON. Each translation introduces errors and costs time.</p>
+          <p class="col-label">With COMET</p>
+          <p class="col-text">COMET provides a universal export layer. Model your PCF in any LCA tool, export to COMET&rsquo;s L4 classes, and every downstream system &mdash; CBAM, PACT, buyer platforms, verifiers &mdash; reads the same structured object. One export, many consumers. No translation errors.</p>
+        </div>
+        <div class="col-right">
+          <div class="example-card" role="region" aria-label="LCA practitioners example">
+            <p class="example-card-label">Example</p>
+            <div class="example-row">
+              <p class="example-row-label">Scenario</p>
+              <p class="example-row-value">An LCA consultant models cement PCFs for 12 plants</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">Before</p>
+              <p class="example-row-value before">12 SimaPro models &rarr; 12 PDFs &rarr; manual data entry into CBAM portal + buyer portal + verification platform = 36 separate formatting exercises.</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">After</p>
+              <p class="example-row-value after">12 SimaPro models &rarr; 12 COMET JSON-LD exports &rarr; auto-ingested by all 3 systems. Zero reformatting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-win" role="note">
+        <span class="quick-win-label">Quick Win</span>
+        <p class="quick-win-text">Eliminate 100% of manual reformatting between LCA tools and downstream systems.</p>
+      </div>
+
+      <div class="get-started">
+        <p class="get-started-label">Get Started</p>
+        <ol class="get-started-steps" aria-label="Steps to get started as an LCA practitioner">
+          <li class="get-started-step">
+            <span class="step-number">01</span>
+            <span class="step-text">Export your LCA results to COMET&rsquo;s <code>ProductCarbonFootprint</code> class (map functional unit, system boundary, LCIA results)</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">02</span>
+            <span class="step-text">Attach the COMET JSON-LD <code>@context</code> to your output</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">03</span>
+            <span class="step-text">Share one file &mdash; the buyer, verifier, and regulator all read the same object</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: CARBON VERIFIERS -->
+  <section class="stakeholder-section" id="verifiers" aria-labelledby="verifiers-title">
+    <div class="section-inner">
+      <p class="section-label">04 &middot; Carbon Verifiers (Assurance &amp; Audit)</p>
+      <h2 class="section-title" id="verifiers-title">Verify carbon claims with machine-readable evidence, not PDFs</h2>
+      <hr class="section-rule" aria-hidden="true">
+
+      <div class="two-col">
+        <div class="col-left">
+          <p class="col-label">The Problem</p>
+          <p class="col-text">You receive a 200-page verification dossier. You manually check emission factors against databases, validate system boundaries against ISO 14067, cross-reference supplier attestations &mdash; all by reading documents. Each verification takes 40&ndash;80 hours.</p>
+          <p class="col-label">With COMET</p>
+          <p class="col-text">COMET structures verification claims as machine-readable objects. The <code style="font-family:'DM Mono',monospace;font-size:0.82em;background:#ede8e0;padding:0.1em 0.4em;">AssuranceLevel</code>, <code style="font-family:'DM Mono',monospace;font-size:0.82em;background:#ede8e0;padding:0.1em 0.4em;">AuditTrail</code>, and <code style="font-family:'DM Mono',monospace;font-size:0.82em;background:#ede8e0;padding:0.1em 0.4em;">QualifiedVerifier</code> classes encode the full chain of custody. SHACL shapes auto-validate that all ISO 14067 required fields are present and correctly typed. Your software does the document cross-referencing; you focus on judgment calls.</p>
+        </div>
+        <div class="col-right">
+          <div class="example-card" role="region" aria-label="Carbon verifiers example">
+            <p class="example-card-label">Example</p>
+            <div class="example-row">
+              <p class="example-row-label">Scenario</p>
+              <p class="example-row-value">Bureau Veritas verifies a steel producer&rsquo;s PCF for CBAM compliance</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">Before</p>
+              <p class="example-row-value before">200-page PDF dossier, 60 hours of manual review, 15 data quality findings discovered late in the process.</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">After</p>
+              <p class="example-row-value after">COMET-structured data. SHACL pre-validation catches 12 of 15 findings automatically. Verification completed in 20 hours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-win" role="note">
+        <span class="quick-win-label">Quick Win</span>
+        <p class="quick-win-text">Reduce verification cycle time by 50&ndash;70% through automated pre-validation of structured data.</p>
+      </div>
+
+      <div class="get-started">
+        <p class="get-started-label">Get Started</p>
+        <ol class="get-started-steps" aria-label="Steps to get started as a carbon verifier">
+          <li class="get-started-step">
+            <span class="step-number">01</span>
+            <span class="step-text">Require clients to submit data using COMET&rsquo;s L6 Verification classes</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">02</span>
+            <span class="step-text">Run SHACL validation shapes against submitted data (catches missing fields, wrong types, invalid references)</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">03</span>
+            <span class="step-text">Issue verification claims as COMET <code>VerificationClaim</code> objects (machine-readable, queryable, reusable)</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PLATFORM VENDORS -->
+  <section class="stakeholder-section" id="platforms" aria-labelledby="platforms-title">
+    <div class="section-inner">
+      <p class="section-label">05 &middot; Platform Vendors (Carbon Data Technology)</p>
+      <h2 class="section-title" id="platforms-title">Ship interoperability as a feature, not a custom integration</h2>
+      <hr class="section-rule" aria-hidden="true">
+
+      <div class="two-col">
+        <div class="col-left">
+          <p class="col-label">The Problem</p>
+          <p class="col-text">Every new customer integration is bespoke. Customer A uses Ecoinvent, Customer B uses GaBi, Customer C has a proprietary format. You spend 40% of engineering time on data translation layers that add no product value.</p>
+          <p class="col-label">With COMET</p>
+          <p class="col-text">Build on COMET&rsquo;s ontology and every COMET-compliant system becomes your customer instantly. <code style="font-family:'DM Mono',monospace;font-size:0.82em;background:#ede8e0;padding:0.1em 0.4em;">npm install @comet/ontology</code> gives you typed classes, SHACL validation, and JSON-LD context &mdash; out of the box. New integrations go from 3 months to 3 days.</p>
+        </div>
+        <div class="col-right">
+          <div class="example-card" role="region" aria-label="Platform vendors example">
+            <p class="example-card-label">Example</p>
+            <div class="example-row">
+              <p class="example-row-label">Scenario</p>
+              <p class="example-row-value">A carbon accounting SaaS integrates with 5 new enterprise customers</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">Before</p>
+              <p class="example-row-value before">5 custom API connectors, 5 data mapping exercises, 5 months of engineering = &euro;200K integration cost.</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">After</p>
+              <p class="example-row-value after">One COMET-compliant API. All 5 customers send data in the same format. Integration time: 1 week total.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-win" role="note">
+        <span class="quick-win-label">Quick Win</span>
+        <p class="quick-win-text">Reduce customer integration cost by 90% and time-to-live from months to days.</p>
+      </div>
+
+      <div class="get-started">
+        <p class="get-started-label">Get Started</p>
+        <ol class="get-started-steps" aria-label="Steps to get started as a platform vendor">
+          <li class="get-started-step">
+            <span class="step-number">01</span>
+            <span class="step-text">Install the COMET ontology package (<code>@comet/ontology</code> via npm or <code>comet-ontology</code> via PyPI)</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">02</span>
+            <span class="step-text">Map your internal data model to COMET classes (use the glossary as reference)</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">03</span>
+            <span class="step-text">Accept and emit COMET JSON-LD payloads &mdash; instant interoperability with the ecosystem</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: REGULATORS -->
+  <section class="stakeholder-section" id="regulators" aria-labelledby="regulators-title">
+    <div class="section-inner">
+      <p class="section-label">06 &middot; Regulators (Policy &amp; Compliance)</p>
+      <h2 class="section-title" id="regulators-title">Receive machine-readable declarations that validate themselves</h2>
+      <hr class="section-rule" aria-hidden="true">
+
+      <div class="two-col">
+        <div class="col-left">
+          <p class="col-label">The Problem</p>
+          <p class="col-text">CBAM alone will generate millions of embedded emissions declarations. Your staff reviews them manually. Each declaration references different emission factors, different methodologies, different units. You cannot automate quality checks at scale.</p>
+          <p class="col-label">With COMET</p>
+          <p class="col-text">When declarants use COMET, their submissions arrive in a structured, validated format. SHACL shapes enforce that every required field is present and correctly typed. Your systems can auto-validate declarations, flag anomalies, and focus human review on edge cases &mdash; not data formatting.</p>
+        </div>
+        <div class="col-right">
+          <div class="example-card" role="region" aria-label="Regulators example">
+            <p class="example-card-label">Example</p>
+            <div class="example-row">
+              <p class="example-row-label">Scenario</p>
+              <p class="example-row-value">EU CBAM authority processes 50,000 declarations in Q1 2026</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">Before</p>
+              <p class="example-row-value before">Manual review of PDF/XML submissions with inconsistent formats. 200 staff, 6-month processing backlog.</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">After</p>
+              <p class="example-row-value after">COMET-structured declarations. 80% auto-validated. Staff focus on the 20% requiring judgment. Backlog cleared in 6 weeks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-win" role="note">
+        <span class="quick-win-label">Quick Win</span>
+        <p class="quick-win-text">Auto-validate 80% of incoming declarations. Reduce processing backlog by 70%.</p>
+      </div>
+
+      <div class="get-started">
+        <p class="get-started-label">Get Started</p>
+        <ol class="get-started-steps" aria-label="Steps to get started as a regulator">
+          <li class="get-started-step">
+            <span class="step-number">01</span>
+            <span class="step-text">Publish COMET as a recommended data format for CBAM/CSRD submissions</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">02</span>
+            <span class="step-text">Provide SHACL validation endpoint &mdash; declarants can pre-validate before submission</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">03</span>
+            <span class="step-text">Ingest COMET JSON-LD declarations directly into your compliance database</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: FINANCIAL MARKETS -->
+  <section class="stakeholder-section" id="finance" aria-labelledby="finance-title">
+    <div class="section-inner">
+      <p class="section-label">07 &middot; Financial Markets (Carbon Risk Pricing)</p>
+      <h2 class="section-title" id="finance-title">Price carbon risk with product-level data, not sector averages</h2>
+      <hr class="section-rule" aria-hidden="true">
+
+      <div class="two-col">
+        <div class="col-left">
+          <p class="col-label">The Problem</p>
+          <p class="col-text">Carbon risk models rely on disclosed Scope 1+2 data and sector-average emission factors. You cannot distinguish between a steel producer using best-available-technology EAF and one running a century-old blast furnace &mdash; they show up in the same sector bucket.</p>
+          <p class="col-label">With COMET</p>
+          <p class="col-text">COMET&rsquo;s market signal layer (L7) enables product-level carbon pricing. Each <code style="font-family:'DM Mono',monospace;font-size:0.82em;background:#ede8e0;padding:0.1em 0.4em;">ProductCarbonFootprint</code> carries verified, granular data &mdash; specific emission factors, specific processes, specific verification levels. Carbon premiums, CBAM shadow tariffs, and EAC spot prices become tradeable data objects.</p>
+        </div>
+        <div class="col-right">
+          <div class="example-card" role="region" aria-label="Financial markets example">
+            <p class="example-card-label">Example</p>
+            <div class="example-row">
+              <p class="example-row-label">Scenario</p>
+              <p class="example-row-value">A commodity trader prices carbon-adjusted steel contracts</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">Before</p>
+              <p class="example-row-value before">Sector-average emissions applied to all steel contracts. No differentiation between green and conventional steel. Carbon premium invisible.</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">After</p>
+              <p class="example-row-value after">COMET-tagged PCFs per production route. Green EAF steel priced at $40&ndash;80/t premium. Blast furnace steel carries CBAM liability. Algorithmic pricing from verified data.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-win" role="note">
+        <span class="quick-win-label">Quick Win</span>
+        <p class="quick-win-text">Enable carbon-differentiated pricing at the product level. Unlock green premium capture for low-carbon producers.</p>
+      </div>
+
+      <div class="get-started">
+        <p class="get-started-label">Get Started</p>
+        <ol class="get-started-steps" aria-label="Steps to get started in financial markets">
+          <li class="get-started-step">
+            <span class="step-number">01</span>
+            <span class="step-text">Ingest COMET-tagged PCFs from producers via L4 classes</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">02</span>
+            <span class="step-text">Link to market signals via L7 <code>CarbonPremium</code> and <code>CBAMShadowTariff</code> classes</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">03</span>
+            <span class="step-text">Build pricing algorithms on verified, structured data &mdash; not estimates</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: CARBON CREDIT DEVELOPERS -->
+  <section class="stakeholder-section" id="credit-developers" aria-labelledby="credit-developers-title">
+    <div class="section-inner">
+      <p class="section-label">08 &middot; Carbon Credit Developers (Project Developers &amp; Registries)</p>
+      <h2 class="section-title" id="credit-developers-title">Make your credits interoperable across every registry and buyer</h2>
+      <hr class="section-rule" aria-hidden="true">
+
+      <div class="two-col">
+        <div class="col-left">
+          <p class="col-label">The Problem</p>
+          <p class="col-text">You develop a DAC project and register it with Gold Standard. A buyer wants Verra-format data. Another wants CAD Trust attestation. A third wants CORSIA-eligible documentation. Each registry has its own data model, and translating between them is manual, error-prone, and expensive.</p>
+          <p class="col-label">With COMET</p>
+          <p class="col-text">COMET&rsquo;s L5 EAC layer and CAD Trust v2.0.2 mapping provide a universal credit data structure. Register your project data once using COMET classes, and any registry, buyer, or Article 6 authority can read it. The 13 CAD Trust tables (project, unit, issuance, retirement, verification) are already mapped.</p>
+        </div>
+        <div class="col-right">
+          <div class="example-card" role="region" aria-label="Carbon credit developers example">
+            <p class="example-card-label">Example</p>
+            <div class="example-row">
+              <p class="example-row-label">Scenario</p>
+              <p class="example-row-value">A DAC developer registers credits across 3 registries for international buyers</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">Before</p>
+              <p class="example-row-value before">3 separate data submissions, 3 formats, 3 verification dossiers. 6 months per registry. &euro;50K in administrative costs.</p>
+            </div>
+            <div class="example-row">
+              <p class="example-row-label">After</p>
+              <p class="example-row-value after">1 COMET-tagged project dataset. Mapped to all 3 registries automatically. Cross-registry retirement tracked. 2 months total.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-win" role="note">
+        <span class="quick-win-label">Quick Win</span>
+        <p class="quick-win-text">Register credits across multiple registries from a single data submission. Cut registry admin costs by 60%.</p>
+      </div>
+
+      <div class="get-started">
+        <p class="get-started-label">Get Started</p>
+        <ol class="get-started-steps" aria-label="Steps to get started as a carbon credit developer">
+          <li class="get-started-step">
+            <span class="step-number">01</span>
+            <span class="step-text">Structure your project data using COMET&rsquo;s L5 EAC classes + CAD Trust variable mapping</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">02</span>
+            <span class="step-text">Attach verification claims using L6 <code>VerificationClaim</code> and <code>CADTrustAttestation</code> classes</span>
+          </li>
+          <li class="get-started-step">
+            <span class="step-number">03</span>
+            <span class="step-text">Export to any registry format &mdash; COMET&rsquo;s JSON-LD context handles the translation</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA: START BUILDING -->
+  <div class="cta-section" role="region" aria-labelledby="cta-title">
+    <div class="section-inner">
+      <p class="cta-label">Start Building with COMET</p>
+      <h2 class="cta-title" id="cta-title">Everything you need to get started.</h2>
+      <hr class="cta-rule" aria-hidden="true">
+      <div class="cta-cards">
+        <a href="ontology.html" class="cta-card" aria-label="Read the COMET specification">
+          <p class="cta-card-type">Reference Specification</p>
+          <h3 class="cta-card-title">Read the Spec</h3>
+          <p class="cta-card-body">The complete COMET ontology: seven-layer architecture, class definitions, standards alignments, and governance model.</p>
+          <span class="cta-card-action" aria-hidden="true">View specification</span>
+        </a>
+        <a href="glossary.html" class="cta-card" aria-label="Search the COMET glossary">
+          <p class="cta-card-type">Reference Dictionary</p>
+          <h3 class="cta-card-title">Search the Glossary</h3>
+          <p class="cta-card-body">Interactive search across all COMET classes, properties, and variables. 100+ entries across all 7 layers.</p>
+          <span class="cta-card-action" aria-hidden="true">Search glossary</span>
+        </a>
+        <a href="visual-guide.html" class="cta-card" aria-label="Explore the COMET visual guide">
+          <p class="cta-card-type">Visual Reference</p>
+          <h3 class="cta-card-title">See the Visual Guide</h3>
+          <p class="cta-card-body">20 MECE visualizations covering architecture, data flow, standards mappings, and market signals.</p>
+          <span class="cta-card-action" aria-hidden="true">Explore visuals</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-brand">COMET &mdash; Carbon Ontology for Markets, Emissions &amp; Trade</p>
+      <p class="footer-tagline">Free &middot; Open &middot; Community-governed &middot; CC BY 4.0 + Apache 2.0</p>
+      <hr class="footer-rule" aria-hidden="true">
+      <nav class="footer-links" aria-label="External links">
+        <a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener noreferrer">github.com/nickgogerty/comet-ontology</a>
+        <a href="https://carbonfinancelab.com" target="_blank" rel="noopener noreferrer">carbonfinancelab.com</a>
+        <a href="https://www.carbonatrisk.org/" target="_blank" rel="noopener noreferrer">carbonatrisk.org</a>
+      </nav>
+      <p class="footer-attribution">A Carbon Finance Lab research initiative.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ─── STICKY NAV: INTERSECTION OBSERVER ─────────────────────────
+    (function () {
+      const pills = document.querySelectorAll('.nav-pill');
+      const sections = document.querySelectorAll('.stakeholder-section[id]');
+
+      if (!('IntersectionObserver' in window) || sections.length === 0) return;
+
+      // Map section id -> pill
+      const pillMap = {};
+      pills.forEach(function (pill) {
+        const sec = pill.getAttribute('data-section');
+        if (sec) pillMap[sec] = pill;
+      });
+
+      // Track which sections are visible; highlight the topmost one
+      const visible = new Set();
+
+      function updateActive() {
+        // Find the topmost visible section in document order
+        let activePill = null;
+        sections.forEach(function (sec) {
+          if (visible.has(sec.id)) {
+            if (!activePill) activePill = pillMap[sec.id];
+          }
+        });
+        pills.forEach(function (p) { p.classList.remove('active'); });
+        if (activePill) activePill.classList.add('active');
+      }
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            visible.add(entry.target.id);
+          } else {
+            visible.delete(entry.target.id);
+          }
+        });
+        updateActive();
+      }, {
+        rootMargin: '-60px 0px -55% 0px',
+        threshold: 0
+      });
+
+      sections.forEach(function (sec) { observer.observe(sec); });
+
+      // Scroll active pill into view in the nav strip
+      pills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          const wrapper = document.querySelector('.nav-pills-inner');
+          if (!wrapper) return;
+          const pillLeft = pill.offsetLeft;
+          const pillWidth = pill.offsetWidth;
+          const wrapperWidth = wrapper.offsetWidth;
+          wrapper.scrollTo({
+            left: pillLeft - wrapperWidth / 2 + pillWidth / 2,
+            behavior: 'smooth'
+          });
+        });
+      });
+    }());
+  </script>
+
+</body>
+</html>
