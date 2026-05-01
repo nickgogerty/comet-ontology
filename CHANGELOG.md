@@ -4,6 +4,33 @@ All notable changes to COMET (Carbon Ontology for Materials and Emissions Tracki
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+**ISO 14068-1:2023 Carbon Neutrality Extension** (`comet-ext:iso14068`, prefix `comet-cn:`)
+- New extension module aligning ISO 14068-1:2023 *Climate change management — Transition to net zero — Part 1: Carbon neutrality* with the COMET seven-layer stack
+- 18 `owl:equivalentClass` bridges from ISO 14068 terms to existing COMET classes (carbon footprint, direct/indirect emissions, GHG removals, sources, sinks, GWP, CO2e, organizational + system boundaries, carbon credits, crediting programmes, registries, organization, product, stakeholder, top management, value chain)
+- 24 new classes covering concepts COMET did not yet encode: `Subject`, `Entity`, `FinancialInstitution`, `Baseline`, `BasePeriod`, `ReportingPeriod`, `UnabatedGHGEmission`, `ResidualGHGEmission`, `GHGEmissionReduction`, `GHGRemovalEnhancement`, `CarbonNeutralityCommitment`, `CarbonNeutralityPathway`, `CarbonNeutralityManagementPlan`, `CarbonNeutralityClaim`, `CarbonNeutralityReport`, `HierarchyAction`, `CreditCriterion`, `CreditingProgrammeCriterion`, `CreditType`, `OffsettingEvent`, `CorrespondingAdjustment`, `RemovalReversal`, `VerificationOpinion`, `FinancedEmissionsAccount`
+- 11 named-individual principles representing ISO 14068 Clause 4 (Transparency, Conservativeness, Hierarchy approach, Supporting transition, Ambition, Urgency, Science-based approach, Avoiding adverse impacts, Accountability, Value chain and life cycle approach)
+- 15 object + datatype properties wiring the new classes together (`hasSubject`, `hasBoundary`, `hasCommitment`, `hasPathway`, `hasBaseline`, `hierarchyStep`, `meetsCriterion`, `targetYearResidualOnly`, `vintageEndYear`, `retirementDate`, `correspondingAdjustmentApplied`, `isExPostCredit`, `reportingPeriodStart`, `reportingPeriodEnd`, others)
+- New extension files: `ext/iso14068/comet-ext-iso14068.ttl` (OWL ontology in Turtle), `ext/iso14068/README.md` (stakeholder summary report with merge map, expansion map, and benefits by stakeholder type)
+- New documentation page: `docs/iso14068.html` — visual presentation of merge / expansion / stakeholder benefits / forbidden practices / adoption checklist
+- JSON-LD context updated (`comet-context.jsonld`) with the new `comet-cn:` namespace and key terms
+- Index page (`docs/index.html`) and ontology specification (`docs/ontology.html`) link to the new ISO 14068 extension
+
+### Changed
+- Top navigation on `docs/ontology.html` now exposes the ISO 14068 extension and the Materials hub
+
+## [0.2.1] - 2026-04-27
+
+### Added
+
+**COMET Materials hub** (`docs/materials.html`)
+- New page pairing the *A Shared Carbon Language* explainer video (~6 min, MP4, 33 MB) with the v0.1 Carbon Protocol stakeholder deck (14 slides, PPTX, 15 MB)
+- Slide-by-slide summaries linking each visualization to the COMET layers, namespaces, and governance model it depicts
+- Banner + TOC link on `docs/ontology.html` and three-card row on `docs/index.html` make the materials discoverable from the home page and the spec
+
 ## [0.2.0] - 2026-03-30
 
 ### Added
