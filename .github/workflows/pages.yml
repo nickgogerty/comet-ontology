@@ -1,0 +1,35 @@
+name: Deploy static site to Pages
+
+# The site is a large (~57MB) hand-written static site under docs/. The legacy
+# branch-based Pages builder runs Jekyll over everything and was timing out at
+# the 10-minute limit. This workflow uploads docs/ as a static artifact and
+# deploys it directly — no Jekyll, no timeout.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deployment
+        uses: actions/deploy-pages@v4
