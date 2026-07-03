@@ -265,7 +265,7 @@
     const keepNode = n => !offNs.has(n.namespace);
     const nodes = g.nodes.filter(keepNode).map(n => ({
       data: { id: n.id, label: n.label, curie: n.curie, kind: n.kind, ns: n.namespace,
-              layer: n.layer, color: n.color, def: n.definition, defined: n.defined },
+              layer: n.layer, color: n.color, def: n.definition, plain: n.plainDescription, defined: n.defined },
     }));
     const present = new Set(nodes.map(n => n.data.id));
     const edges = g.edges.filter(e => present.has(e.from) && present.has(e.to)).map((e,i) => ({
@@ -337,7 +337,8 @@
       `<div class="curie">${esc(d.curie)}</div>
        <h3>${esc(d.label)}</h3>
        <div class="meta">${esc(d.kind)} · ${esc(d.ns)} · ${esc(d.layer)}${d.defined?'':' · referenced (defined upstream)'}</div>
-       ${d.def ? `<p>${esc(d.def)}</p>` : ''}
+       ${d.plain ? `<p style="font-weight:500">${esc(d.plain)}</p>` : ''}
+       ${d.def ? `<p style="opacity:.75;font-size:.92em">${esc(d.def)}</p>` : ''}
        ${out.length ? `<div class="rels"><b>Outgoing</b><br>${relHtml(out,'out')}</div>` : ''}
        ${inc.length ? `<div class="rels"><b>Incoming</b><br>${relHtml(inc,'in')}</div>` : ''}`;
     c.classList.add('show');
@@ -429,6 +430,7 @@
     { k:'namespace', label:'Namespace', cls:'c-ns' },
     { k:'layer', label:'Layer', cls:'c-ns' },
     { k:'datatype', label:'Type' },
+    { k:'plainDescription', label:'Plain English', cls:'c-def' },
     { k:'definition', label:'Definition', cls:'c-def' },
   ];
   let sortKey = 'curie', sortDir = 1;
@@ -451,7 +453,7 @@
     let rows = D.terms.filter(t => {
       if (fk && t.kind !== fk) return false;
       if (fn && t.namespace !== fn) return false;
-      if (q) return (t.curie+' '+t.label+' '+(t.definition||'')+' '+t.namespace+' '+(t.datatype||'')).toLowerCase().includes(q);
+      if (q) return (t.curie+' '+t.label+' '+(t.definition||'')+' '+(t.plainDescription||'')+' '+t.namespace+' '+(t.datatype||'')).toLowerCase().includes(q);
       return true;
     });
     rows.sort((a,b) => {
