@@ -132,6 +132,7 @@ EXTERNAL_BASES: dict[str, str] = {
     "qudt-unit": "http://qudt.org/vocab/UNIT/",
     # CarbonSig Verifier Hub export contract (v4) — crosswalk target.
     "csig": "https://api.carbonsig.com/schemas/verifier-export/v4#",
+    "irec": "https://evident.global/i-rec/electricity#",
 }
 
 # Friendly display names + colours for external standards (alignment targets).
@@ -147,6 +148,7 @@ EXTERNAL_META: dict[str, dict[str, str]] = {
     "sdg": {"name": "UN SDG", "color": "#2a8ab0"},
     "qudt-unit": {"name": "QUDT Unit", "color": "#888"},
     "csig": {"name": "CarbonSig Verifier Export v4", "color": "#0a7c5a"},
+    "irec": {"name": "Evident I-REC", "color": "#0a5ac8"},
 }
 
 

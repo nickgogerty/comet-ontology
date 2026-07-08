@@ -52,6 +52,7 @@ CLUSTER_OF = {
     "GHG Protocol":          "product",
     "GHG Protocol Scope 3":  "product",
     "ISO 14067":             "product",
+    "TfS PCF v3.1":          "product",
     "EN 15804+A2":           "product",
     # Regulation & Disclosure — what must be reported
     "EU ESRS":               "reg",
@@ -70,6 +71,7 @@ CLUSTER_OF = {
     "CAD Trust":             "market",
     "Verra VCS":             "market",
     "ICAO CORSIA":           "market",
+    "Evident I-REC":         "market",
 }
 
 # pretty short labels for pills (default = raw standard name)
@@ -90,6 +92,8 @@ DISPLAY = {
     "CAD Trust":                    "CAD Trust registry",
     "Verra VCS":                    "Verra VCS",
     "ICAO CORSIA":                  "ICAO CORSIA",
+    "TfS PCF v3.1":                 "TfS PCF v3.1",
+    "Evident I-REC":                "I-REC(E)",
 }
 
 # standards intentionally not shown as clusters (vocab / infra / cross-cutting)

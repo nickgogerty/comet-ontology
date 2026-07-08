@@ -848,6 +848,8 @@
 <span class="ns-prefix">@prefix comet-beta:</span> <span class="ns-uri">&lt;https://comet.carbon/beta#&gt;</span>
 <span class="ns-prefix">@prefix comet-pj:</span>   <span class="ns-uri">&lt;https://comet.carbon/ext/pcr-japan#&gt;</span>  <span class="ns-comment"># PCR Japan / SuMPO EcoLeaf (v0.1)</span>
 <span class="ns-prefix">@prefix comet-tfs:</span>  <span class="ns-uri">&lt;https://comet.carbon/ext/tfs-pcf#&gt;</span>    <span class="ns-comment"># TfS PCF Data Model v3.1 (v0.1)</span>
+<span class="ns-prefix">@prefix comet-asi:</span>  <span class="ns-uri">&lt;https://comet.carbon/ext/aluminium-asi#&gt;</span> <span class="ns-comment"># Aluminium Stewardship (v0.1)</span>
+<span class="ns-prefix">@prefix comet-irec:</span> <span class="ns-uri">&lt;https://comet.carbon/ext/irec-e#&gt;</span>       <span class="ns-comment"># I-REC(E) Electricity (v0.1)</span>
       </div>
     </div>
     <div>
@@ -1890,6 +1892,13 @@
       <div class="card-title" style="font-size:13px;">comet-tfs: TfS PCF Data Model v3.1</div>
       <div class="card-body">All 131 fields of the Together for Sustainability PCF Data Model v3.1 (chemical industry): <code style="font-family:monospace;font-size:0.85em;">TfSProductFootprint</code>, the PACT-aligned A–H <code style="font-family:monospace;font-size:0.85em;">GWPPositionBreakdown</code>, <code style="font-family:monospace;font-size:0.85em;">MassBalancing</code>, <code style="font-family:monospace;font-size:0.85em;">DataQualityRating</code>, <code style="font-family:monospace;font-size:0.85em;">VerificationShare</code>, and <code style="font-family:monospace;font-size:0.85em;">AttestationOfConformance</code>. 24 new classes · 79 enum values · SHACL shapes. Interoperable with WBCSD PACT + Catena-X.</div>
       <div style="margin-top:8px;font-family:var(--mono);font-size:9px;color:#aaa;">Chemicals WG · RFC Open · <a href="tfs-pcf.html" style="color:#0a8c5a;">tfs-pcf.html →</a> · <a href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/tfs-pcf" style="color:#0a8c5a;" target="_blank">ext/tfs-pcf ↗</a></div>
+    </div>
+    <div class="card" style="border-color:#0a5ac8;">
+      <div class="card-accent" style="background:#0a5ac8;"></div>
+      <div class="card-label">New Extension · v0.1</div>
+      <div class="card-title" style="font-size:13px;">comet-irec: I-REC(E) Electricity</div>
+      <div class="card-body">The Evident I-REC Code for Electricity v1.13 + Standard Forms SF-02 / SF-04: <code style="font-family:monospace;font-size:0.85em;">IRECCertificate</code>, <code style="font-family:monospace;font-size:0.85em;">IssueRequest</code>, the SF-04C <code style="font-family:monospace;font-size:0.85em;">FuelConsumptionStatement</code> co-firing allocation, and the QR-verified <code style="font-family:monospace;font-size:0.85em;">RedemptionStatement</code>. 84 terms typing only the I-REC-specific gaps — the certificate reuses <code style="font-family:monospace;font-size:0.85em;">comet-eac:</code> (subType IREC), facilities reuse <code style="font-family:monospace;font-size:0.85em;">comet:Site</code>, redemption reuses <code style="font-family:monospace;font-size:0.85em;">comet-eac:RetirementEvent</code>. SHACL shapes + JSON-LD converter.</div>
+      <div style="margin-top:8px;font-family:var(--mono);font-size:9px;color:#aaa;">EAC WG · RFC Open · <a href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/irec-e" style="color:#0a5ac8;" target="_blank">ext/irec-e ↗</a></div>
     </div>
   </div>
 </section>
