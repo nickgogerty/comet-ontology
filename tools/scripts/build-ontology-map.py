@@ -57,6 +57,7 @@ NS_BASES: dict[str, str] = {
     "comet-ef": "https://comet.carbon/v1/emfactor#",
     "comet-pj": "https://comet.carbon/ext/pcr-japan#",
     "comet-pcr": "https://comet.carbon/ext/pcr#",
+    "ipcc": "https://comet.carbon/vocab/ipcc-gwp#",
     "comet-asi": "https://comet.carbon/ext/aluminium-asi#",
     "comet-tfs": "https://comet.carbon/ext/tfs-pcf#",
     "comet-irec": "https://comet.carbon/ext/irec-e#",
@@ -77,6 +78,7 @@ NS_META: dict[str, dict[str, str]] = {
     "comet-cn": {"name": "ISO 14068 Carbon Neutrality (ext)", "layer": "Extension", "color": "#0a7c8c"},
     "comet-pj": {"name": "PCR Japan / SuMPO EcoLeaf (ext)", "layer": "Extension", "color": "#c8720a"},
     "comet-pcr": {"name": "PCR Method / CarbonSig (ext)", "layer": "Extension", "color": "#0a7c5a"},
+    "ipcc": {"name": "IPCC GWP value sets (ext)", "layer": "Extension", "color": "#7c5a0a"},
     "comet-asi": {"name": "Aluminium Stewardship (ASI, ext)", "layer": "Extension", "color": "#8a8f2f"},
     "comet-tfs": {"name": "TfS PCF Data Model (ext)", "layer": "Extension", "color": "#0a8c5a"},
     "comet-irec": {"name": "I-REC(E) Electricity (ext)", "layer": "Extension", "color": "#0a5ac8"},
@@ -186,6 +188,10 @@ KIND_LABELS = {
     str(OWL.AnnotationProperty): "AnnotationProperty",
     str(OWL.NamedIndividual): "Individual",
     str(RDF.Property): "Property",
+    # GWP value-set vocabulary concepts (skos:Concept instances of these classes)
+    "https://comet.carbon/vocab/ipcc-gwp#GWPValueSet": "GWP Value Set",
+    "https://comet.carbon/ext/pcr#ARBasis": "AR Basis",
+    "https://comet.carbon/ext/pcr#GWPHorizon": "GWP Horizon",
 }
 
 

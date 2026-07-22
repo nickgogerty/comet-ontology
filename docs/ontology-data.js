@@ -88,7 +88,15 @@ window.COMET_ONTOLOGY = {
       "layer": "Extension",
       "color": "#0a7c5a",
       "graph_default": true,
-      "term_count": 17
+      "term_count": 31
+    },
+    {
+      "prefix": "ipcc",
+      "name": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "color": "#7c5a0a",
+      "graph_default": true,
+      "term_count": 23
     },
     {
       "prefix": "comet-asi",
@@ -14116,8 +14124,8 @@ window.COMET_ONTOLOGY = {
       "kind": "Property",
       "namespace": "Emission Factor",
       "layer": "L2 · Emission Factor",
-      "datatype": "Enum (AR5 / AR6)",
-      "definition": "IPCC Assessment Report version",
+      "datatype": "Enum (AR5 / AR6) → CURIE ipcc:GWPValueSet",
+      "definition": "IPCC Assessment Report edition (deprecated — edition alone is under-determined; retained for PACT export only). Superseded by comet-pcr:gwpValueSet (edition + variant) with arBasis / arConfidence / gwpHorizon provenance — see the GWP value-set doc.",
       "source": "glossary",
       "subClassOf": [],
       "domain": [],
@@ -16339,6 +16347,103 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "https://comet.carbon/ext/pcr#BackSolved",
+      "curie": "comet-pcr:BackSolved",
+      "prefix": "comet-pcr",
+      "local": "BackSolved",
+      "kind": "AR Basis",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "back-solved",
+      "definition": "The value set is arithmetically recovered from the gas split and the CO2e total — the cheapest determinate test, run before any model. Determinate, effectively Type-A. Where a unique solution exists this is evidentially equivalent to a declaration and export gates should treat it as such.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#Declared",
+      "curie": "comet-pcr:Declared",
+      "prefix": "comet-pcr",
+      "local": "Declared",
+      "kind": "AR Basis",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "declared",
+      "definition": "The value set is stated by the source (e.g. a machine-readable tag). Determinate.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#Indeterminate",
+      "curie": "comet-pcr:Indeterminate",
+      "prefix": "comet-pcr",
+      "local": "Indeterminate",
+      "kind": "AR Basis",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "indeterminate",
+      "definition": "The value set cannot be established. gwpValueSet is absent; the factor is non-declarable into a regulated or PACT channel until resolved.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#Inferred",
+      "curie": "comet-pcr:Inferred",
+      "prefix": "comet-pcr",
+      "local": "Inferred",
+      "kind": "AR Basis",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "inferred",
+      "definition": "The value set is assigned by a model from metadata; carries comet-pcr:arConfidence (below 1) and propagates its own uncertainty. Should link the assigning rule via comet-pcr:informedByRule.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#ARBasis",
+      "curie": "comet-pcr:ARBasis",
+      "prefix": "comet-pcr",
+      "local": "ARBasis",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Assessment-Report Basis",
+      "definition": "How a factor's GWP value set was established.",
+      "subClassOf": [
+        "Concept"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
       "iri": "https://comet.carbon/ext/pcr#CircularFootprintFormula",
       "curie": "comet-pcr:CircularFootprintFormula",
       "prefix": "comet-pcr",
@@ -16434,6 +16539,27 @@ window.COMET_ONTOLOGY = {
       "datatype": ""
     },
     {
+      "iri": "https://comet.carbon/ext/pcr#GWPHorizon",
+      "curie": "comet-pcr:GWPHorizon",
+      "prefix": "comet-pcr",
+      "local": "GWPHorizon",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "GWP Time Horizon",
+      "definition": "The integration time horizon of a global warming potential.",
+      "subClassOf": [
+        "Concept"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
       "iri": "https://comet.carbon/ext/pcr#PCRDocument",
       "curie": "comet-pcr:PCRDocument",
       "prefix": "comet-pcr",
@@ -16487,6 +16613,52 @@ window.COMET_ONTOLOGY = {
       "subClassOf": [],
       "domain": [],
       "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#arConfidence",
+      "curie": "comet-pcr:arConfidence",
+      "prefix": "comet-pcr",
+      "local": "arConfidence",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "assessment-report confidence",
+      "definition": "For the inferred case only: the model's confidence in the assigned value set, in [0,1] (e.g. P(value set | source, vintage, unit, sector, gas hints)). Absent when arBasis is declared or back-solved (both determinate).",
+      "subClassOf": [],
+      "domain": [
+        "GWP100Value"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#impliedConfidence",
+      "curie": "comet-pcr:impliedConfidence",
+      "prefix": "comet-pcr",
+      "local": "impliedConfidence",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "implied confidence",
+      "definition": "The confidence a basis category implies on its own, in [0,1]. Declared and back-solved are determinate (1.0); inferred carries a per-factor comet-pcr:arConfidence instead; indeterminate has none.",
+      "subClassOf": [],
+      "domain": [
+        "ARBasis"
+      ],
+      "range": [
+        "decimal"
+      ],
       "languages": [
         "en"
       ],
@@ -16608,6 +16780,67 @@ window.COMET_ONTOLOGY = {
       "datatype": ""
     },
     {
+      "iri": "https://comet.carbon/ext/pcr#GWP100",
+      "curie": "comet-pcr:GWP100",
+      "prefix": "comet-pcr",
+      "local": "GWP100",
+      "kind": "GWP Horizon",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "GWP-100 (100-year)",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#GWP20",
+      "curie": "comet-pcr:GWP20",
+      "prefix": "comet-pcr",
+      "local": "GWP20",
+      "kind": "GWP Horizon",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "GWP-20 (20-year)",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#arBasis",
+      "curie": "comet-pcr:arBasis",
+      "prefix": "comet-pcr",
+      "local": "arBasis",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "assessment-report basis",
+      "definition": "How the value set on this factor was established: declared by the source, arithmetically back-solved from a gas split and CO2e total, inferred by a model, or indeterminate.",
+      "subClassOf": [],
+      "domain": [
+        "GWP100Value"
+      ],
+      "range": [
+        "ARBasis"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
       "iri": "https://comet.carbon/ext/pcr#governedByPCR",
       "curie": "comet-pcr:governedByPCR",
       "prefix": "comet-pcr",
@@ -16624,6 +16857,75 @@ window.COMET_ONTOLOGY = {
       ],
       "range": [
         "PCRDocument"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#gwpHorizon",
+      "curie": "comet-pcr:gwpHorizon",
+      "prefix": "comet-pcr",
+      "local": "gwpHorizon",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "GWP time horizon",
+      "definition": "The GWP time horizon the factor is stated on (GWP100 or GWP20). Defaults to GWP100. A methane factor near 80 tagged 'GWP-100 AR6' is almost certainly a GWP-20 mislabel — this property makes that anomaly detectable.",
+      "subClassOf": [],
+      "domain": [
+        "GWP100Value"
+      ],
+      "range": [
+        "GWPHorizon"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#gwpValueSet",
+      "curie": "comet-pcr:gwpValueSet",
+      "prefix": "comet-pcr",
+      "local": "gwpValueSet",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "GWP value set",
+      "definition": "The IPCC GWP value set (edition + variant) that produced this factor — a CURIE into the ipcc: controlled vocabulary, e.g. ipcc:AR6-fossilCH4, ipcc:AR5-noFeedback, ipcc:SAR. Supersedes the edition-only enum: absent (null) is legitimate and means the basis is indeterminate, in which case comet-pcr:arBasis MUST be comet-pcr:Indeterminate.",
+      "subClassOf": [],
+      "domain": [
+        "GWP100Value"
+      ],
+      "range": [
+        "GWPValueSet"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#informedByRule",
+      "curie": "comet-pcr:informedByRule",
+      "prefix": "comet-pcr",
+      "local": "informedByRule",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "informed by rule",
+      "definition": "The documented substitution/inference rule (back-solve or model) that assigned the value set, so a verifier receiving the graph sees not just that a basis was assumed but which rule assumed it and with what confidence.",
+      "subClassOf": [],
+      "domain": [
+        "GWP100Value"
+      ],
+      "range": [
+        "DataSubstitutionRule"
       ],
       "languages": [
         "en"
@@ -23601,6 +23903,497 @@ window.COMET_ONTOLOGY = {
       "domain": [],
       "range": [],
       "languages": []
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#GWPValueSet",
+      "curie": "ipcc:GWPValueSet",
+      "prefix": "ipcc",
+      "local": "GWPValueSet",
+      "kind": "Class",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "GWP Value Set",
+      "definition": "A single, internally consistent set of global-warming-potential characterisation factors as published by one IPCC Assessment Report under one variant convention (feedback treatment and methane fossil/biogenic split).",
+      "subClassOf": [
+        "Concept"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#edition",
+      "curie": "ipcc:edition",
+      "prefix": "ipcc",
+      "local": "edition",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "IPCC edition",
+      "definition": "The IPCC Assessment Report edition label this value set belongs to (SAR, AR4, AR5, AR6). Not sufficient on its own to identify the value set.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#forGas",
+      "curie": "ipcc:forGas",
+      "prefix": "ipcc",
+      "local": "forGas",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "for gas",
+      "definition": "The gas the witness GWP applies to (e.g. CH4, N2O, CF4). 'CH4-fossil' / 'CH4-nonfossil' where the value set distinguishes them.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#gwp100",
+      "curie": "ipcc:gwp100",
+      "prefix": "ipcc",
+      "local": "gwp100",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "GWP-100",
+      "definition": "The 100-year global warming potential of the gas under this value set.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#inForceFor",
+      "curie": "ipcc:inForceFor",
+      "prefix": "ipcc",
+      "local": "inForceFor",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "in force for",
+      "definition": "A named reporting destination or instrument that currently requires or accepts this value set. Multiple values allowed. Verify against the current instrument before relying on it.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#isFloor",
+      "curie": "ipcc:isFloor",
+      "prefix": "ipcc",
+      "local": "isFloor",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "is registry floor",
+      "definition": "True for the earliest value set the registry admits (SAR). The floor exists because transitioned Kyoto-era units carry SAR-basis values that trade indefinitely.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "boolean"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#onGas",
+      "curie": "ipcc:onGas",
+      "prefix": "ipcc",
+      "local": "onGas",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "on gas",
+      "definition": "Names the gas(es) on which an ipcc:differsFrom relation holds.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#pactEnumValue",
+      "curie": "ipcc:pactEnumValue",
+      "prefix": "ipcc",
+      "local": "pactEnumValue",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "PACT enum value",
+      "definition": "The (lossy) edition string PACT's ipccCharacterizationFactors would receive on export, when pactExportable is true. The variant distinction is discarded in the collapse — which is exactly why the value set, not this string, is the COMET source of truth.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#pactExportable",
+      "curie": "ipcc:pactExportable",
+      "prefix": "ipcc",
+      "local": "pactExportable",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "PACT-exportable",
+      "definition": "True iff this value set can be represented, without asserting anything false, in PACT's ipccCharacterizationFactors edition enum. SAR, AR4 and the indeterminate case are NOT PACT-exportable: PACT's enum cannot name them, so a COMET-faithful factor on one of these value sets is legitimately non-declarable into a PACT channel.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "boolean"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#publicationYear",
+      "curie": "ipcc:publicationYear",
+      "prefix": "ipcc",
+      "local": "publicationYear",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "publication year",
+      "definition": "The year the underlying Assessment Report (or the adopting decision) published this value set. Vintage is the single most predictive feature when inferring a value set from metadata.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "gYear"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#regulatoryStatus",
+      "curie": "ipcc:regulatoryStatus",
+      "prefix": "ipcc",
+      "local": "regulatoryStatus",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "regulatory status",
+      "definition": "Current standing of this value set in reporting practice: 'in-force' (required or accepted by at least one live destination), 'published-alternative' (a legitimately published set rarely selected for reporting), or 'archival' (historical/legacy basis, not accepted by any current destination).",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#variant",
+      "curie": "ipcc:variant",
+      "prefix": "ipcc",
+      "local": "variant",
+      "kind": "DatatypeProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "variant",
+      "definition": "The convention that, together with the edition, pins the numeric values: e.g. 'no-feedback', 'with-feedback', 'UNFCCC-7CP27', 'fossil-CH4', 'biogenic-CH4'.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#AR4",
+      "curie": "ipcc:AR4",
+      "prefix": "ipcc",
+      "local": "AR4",
+      "kind": "GWP Value Set",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "IPCC AR4 GWP-100 (2007)",
+      "definition": "Fourth Assessment Report GWP-100 value set. Still live: California ARB runs its emissions inventory on AR4, US EPA GHGRP reporting years RY2010–RY2023 are an AR4 archive, and Verra VCS permits AR4 conversion for pre-2021 vintages — so AR4 is permanently embedded in tradeable credit stock.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#AR5-noFeedback",
+      "curie": "ipcc:AR5-noFeedback",
+      "prefix": "ipcc",
+      "local": "AR5-noFeedback",
+      "kind": "GWP Value Set",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "IPCC AR5 GWP-100, without climate–carbon feedbacks",
+      "definition": "AR5 WG1 Table 8.A.1 GWP-100 values WITHOUT climate–carbon feedbacks. This is the GHG Protocol convention and the de-facto meaning of a bare 'AR5' tag in corporate accounting.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#AR5-UNFCCC",
+      "curie": "ipcc:AR5-UNFCCC",
+      "prefix": "ipcc",
+      "local": "AR5-UNFCCC",
+      "kind": "GWP Value Set",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "IPCC AR5 GWP-100, UNFCCC 7/CP.27 variant",
+      "definition": "AR5 Table 8.A.1 GWP-100 as adopted by UNFCCC Decision 7/CP.27 for the Paris Enhanced Transparency Framework — EXCLUDING the AR5 fossil-methane value. Required for national reporting from no later than 31 Dec 2024.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#AR5-withFeedback",
+      "curie": "ipcc:AR5-withFeedback",
+      "prefix": "ipcc",
+      "local": "AR5-withFeedback",
+      "kind": "GWP Value Set",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "IPCC AR5 GWP-100, with climate–carbon feedbacks",
+      "definition": "AR5 WG1 Table 8.A.1 GWP-100 values WITH climate–carbon feedbacks. A distinct, published value set that a bare 'AR5' tag does not disambiguate from the no-feedback set.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#AR6-biogenicCH4",
+      "curie": "ipcc:AR6-biogenicCH4",
+      "prefix": "ipcc",
+      "local": "AR6-biogenicCH4",
+      "kind": "GWP Value Set",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "IPCC AR6 GWP-100, non-fossil (biogenic) methane",
+      "definition": "AR6 WG1 Ch.7 Table 7.15 GWP-100 using the NON-FOSSIL (biogenic) methane value — applies where methane's carbon is of biogenic origin (e.g. agriculture, landfill, biomass).",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#AR6-fossilCH4",
+      "curie": "ipcc:AR6-fossilCH4",
+      "prefix": "ipcc",
+      "local": "AR6-fossilCH4",
+      "kind": "GWP Value Set",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "IPCC AR6 GWP-100, fossil methane",
+      "definition": "AR6 WG1 Ch.7 Table 7.15 GWP-100 using the FOSSIL methane value. Per the GHG Protocol Aug-2024 table, the fossil-methane value applies to fugitive emissions from oil, gas and coal and to industrial processes where the carbon is of fossil origin.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#SAR",
+      "curie": "ipcc:SAR",
+      "prefix": "ipcc",
+      "local": "SAR",
+      "kind": "GWP Value Set",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "IPCC SAR GWP-100 (1995)",
+      "definition": "Second Assessment Report GWP-100 value set. The registry floor: transitioned CERs and Kyoto-era inventory data carry SAR-basis values and do not expire, so SAR is a live requirement, not merely archival.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#defaultHorizon",
+      "curie": "ipcc:defaultHorizon",
+      "prefix": "ipcc",
+      "local": "defaultHorizon",
+      "kind": "ObjectProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "default time horizon",
+      "definition": "The GWP time horizon these witness values are stated on (GWP100 unless noted). A value set is horizon-specific: GWP20 and GWP100 are different numbers from the same report.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "GWPHorizon"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#differsFrom",
+      "curie": "ipcc:differsFrom",
+      "prefix": "ipcc",
+      "local": "differsFrom",
+      "kind": "ObjectProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "differs from",
+      "definition": "Asserts that two value sets differ, with the specific gas(es) of difference given by ipcc:onGas on the same subject. Lets a consumer prove that two edition-sharing value sets are not interchangeable without recomputing.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "GWPValueSet"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#hasGWP",
+      "curie": "ipcc:hasGWP",
+      "prefix": "ipcc",
+      "local": "hasGWP",
+      "kind": "ObjectProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "has GWP",
+      "definition": "Links a value set to one witness gas/factor pair used by the arithmetic back-solve.",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/vocab/ipcc-gwp#supersedes",
+      "curie": "ipcc:supersedes",
+      "prefix": "ipcc",
+      "local": "supersedes",
+      "kind": "ObjectProperty",
+      "namespace": "IPCC GWP value sets (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "supersedes",
+      "definition": "The earlier value set this one is the successor edition of (chronological lineage, not equivalence).",
+      "subClassOf": [],
+      "domain": [
+        "GWPValueSet"
+      ],
+      "range": [
+        "GWPValueSet"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
     }
   ],
   "graph": {
@@ -25402,7 +26195,7 @@ window.COMET_ONTOLOGY = {
         "namespace": "Emission Factor",
         "layer": "L2 · Emission Factor",
         "color": "#3c1a6b",
-        "definition": "IPCC Assessment Report version",
+        "definition": "IPCC Assessment Report edition (deprecated — edition alone is under-determined; retained for PACT export only). Superseded by comet-pcr:gwpValueSet (edition + variant) with arBasis / arConfidence / gwpHorizon provenance — see the GWP value-set doc.",
         "defined": true
       },
       {
@@ -26702,6 +27495,66 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "https://comet.carbon/ext/pcr#BackSolved",
+        "label": "back-solved",
+        "curie": "comet-pcr:BackSolved",
+        "kind": "AR Basis",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The value set is arithmetically recovered from the gas split and the CO2e total — the cheapest determinate test, run before any model. Determinate, effectively Type-A. Where a unique solution exists this is evidentially equivalent to a declaration and export gates should treat it as such.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#Declared",
+        "label": "declared",
+        "curie": "comet-pcr:Declared",
+        "kind": "AR Basis",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The value set is stated by the source (e.g. a machine-readable tag). Determinate.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#Indeterminate",
+        "label": "indeterminate",
+        "curie": "comet-pcr:Indeterminate",
+        "kind": "AR Basis",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The value set cannot be established. gwpValueSet is absent; the factor is non-declarable into a regulated or PACT channel until resolved.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#Inferred",
+        "label": "inferred",
+        "curie": "comet-pcr:Inferred",
+        "kind": "AR Basis",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The value set is assigned by a model from metadata; carries comet-pcr:arConfidence (below 1) and propagates its own uncertainty. Should link the assigning rule via comet-pcr:informedByRule.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#ARBasis",
+        "label": "Assessment-Report Basis",
+        "curie": "comet-pcr:ARBasis",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "How a factor's GWP value set was established.",
+        "defined": true
+      },
+      {
         "id": "https://comet.carbon/ext/pcr#CircularFootprintFormula",
         "label": "Circular Footprint Formula",
         "curie": "comet-pcr:CircularFootprintFormula",
@@ -26762,6 +27615,18 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "https://comet.carbon/ext/pcr#GWPHorizon",
+        "label": "GWP Time Horizon",
+        "curie": "comet-pcr:GWPHorizon",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The integration time horizon of a global warming potential.",
+        "defined": true
+      },
+      {
         "id": "https://comet.carbon/ext/pcr#PCRDocument",
         "label": "PCR Document",
         "curie": "comet-pcr:PCRDocument",
@@ -26795,6 +27660,30 @@ window.COMET_ONTOLOGY = {
         "layer": "Extension",
         "color": "#0a7c5a",
         "definition": "The reference service life (RSL) of a product, used to scenario-scale use-stage modules.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#arConfidence",
+        "label": "assessment-report confidence",
+        "curie": "comet-pcr:arConfidence",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "For the inferred case only: the model's confidence in the assigned value set, in [0,1] (e.g. P(value set | source, vintage, unit, sector, gas hints)). Absent when arBasis is declared or back-solved (both determinate).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#impliedConfidence",
+        "label": "implied confidence",
+        "curie": "comet-pcr:impliedConfidence",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The confidence a basis category implies on its own, in [0,1]. Declared and back-solved are determinate (1.0); inferred carries a per-factor comet-pcr:arConfidence instead; indeterminate has none.",
         "defined": true
       },
       {
@@ -26858,6 +27747,42 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "https://comet.carbon/ext/pcr#GWP100",
+        "label": "GWP-100 (100-year)",
+        "curie": "comet-pcr:GWP100",
+        "kind": "GWP Horizon",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#GWP20",
+        "label": "GWP-20 (20-year)",
+        "curie": "comet-pcr:GWP20",
+        "kind": "GWP Horizon",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#arBasis",
+        "label": "assessment-report basis",
+        "curie": "comet-pcr:arBasis",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "How the value set on this factor was established: declared by the source, arithmetically back-solved from a gas split and CO2e total, inferred by a model, or indeterminate.",
+        "defined": true
+      },
+      {
         "id": "https://comet.carbon/ext/pcr#governedByPCR",
         "label": "governed by PCR",
         "curie": "comet-pcr:governedByPCR",
@@ -26867,6 +27792,42 @@ window.COMET_ONTOLOGY = {
         "layer": "Extension",
         "color": "#0a7c5a",
         "definition": "The PCR document whose method requirements govern this product carbon footprint.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#gwpHorizon",
+        "label": "GWP time horizon",
+        "curie": "comet-pcr:gwpHorizon",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The GWP time horizon the factor is stated on (GWP100 or GWP20). Defaults to GWP100. A methane factor near 80 tagged 'GWP-100 AR6' is almost certainly a GWP-20 mislabel — this property makes that anomaly detectable.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#gwpValueSet",
+        "label": "GWP value set",
+        "curie": "comet-pcr:gwpValueSet",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The IPCC GWP value set (edition + variant) that produced this factor — a CURIE into the ipcc: controlled vocabulary, e.g. ipcc:AR6-fossilCH4, ipcc:AR5-noFeedback, ipcc:SAR. Supersedes the edition-only enum: absent (null) is legitimate and means the basis is indeterminate, in which case comet-pcr:arBasis MUST be comet-pcr:Indeterminate.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#informedByRule",
+        "label": "informed by rule",
+        "curie": "comet-pcr:informedByRule",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The documented substitution/inference rule (back-solve or model) that assigned the value set, so a verifier receiving the graph sees not just that a basis was assumed but which rule assumed it and with what confidence.",
         "defined": true
       },
       {
@@ -30698,9 +31659,285 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
-        "id": "https://comet.carbon/v1/ver#AuditTrail",
-        "label": "AuditTrail",
-        "curie": "comet-ver:AuditTrail",
+        "id": "https://comet.carbon/vocab/ipcc-gwp#GWPValueSet",
+        "label": "GWP Value Set",
+        "curie": "ipcc:GWPValueSet",
+        "kind": "Class",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "A single, internally consistent set of global-warming-potential characterisation factors as published by one IPCC Assessment Report under one variant convention (feedback treatment and methane fossil/biogenic split).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#edition",
+        "label": "IPCC edition",
+        "curie": "ipcc:edition",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "The IPCC Assessment Report edition label this value set belongs to (SAR, AR4, AR5, AR6). Not sufficient on its own to identify the value set.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#forGas",
+        "label": "for gas",
+        "curie": "ipcc:forGas",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "The gas the witness GWP applies to (e.g. CH4, N2O, CF4). 'CH4-fossil' / 'CH4-nonfossil' where the value set distinguishes them.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#gwp100",
+        "label": "GWP-100",
+        "curie": "ipcc:gwp100",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "The 100-year global warming potential of the gas under this value set.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#inForceFor",
+        "label": "in force for",
+        "curie": "ipcc:inForceFor",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "A named reporting destination or instrument that currently requires or accepts this value set. Multiple values allowed. Verify against the current instrument before relying on it.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#isFloor",
+        "label": "is registry floor",
+        "curie": "ipcc:isFloor",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "True for the earliest value set the registry admits (SAR). The floor exists because transitioned Kyoto-era units carry SAR-basis values that trade indefinitely.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#onGas",
+        "label": "on gas",
+        "curie": "ipcc:onGas",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "Names the gas(es) on which an ipcc:differsFrom relation holds.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#pactEnumValue",
+        "label": "PACT enum value",
+        "curie": "ipcc:pactEnumValue",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "The (lossy) edition string PACT's ipccCharacterizationFactors would receive on export, when pactExportable is true. The variant distinction is discarded in the collapse — which is exactly why the value set, not this string, is the COMET source of truth.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#pactExportable",
+        "label": "PACT-exportable",
+        "curie": "ipcc:pactExportable",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "True iff this value set can be represented, without asserting anything false, in PACT's ipccCharacterizationFactors edition enum. SAR, AR4 and the indeterminate case are NOT PACT-exportable: PACT's enum cannot name them, so a COMET-faithful factor on one of these value sets is legitimately non-declarable into a PACT channel.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#publicationYear",
+        "label": "publication year",
+        "curie": "ipcc:publicationYear",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "The year the underlying Assessment Report (or the adopting decision) published this value set. Vintage is the single most predictive feature when inferring a value set from metadata.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#regulatoryStatus",
+        "label": "regulatory status",
+        "curie": "ipcc:regulatoryStatus",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "Current standing of this value set in reporting practice: 'in-force' (required or accepted by at least one live destination), 'published-alternative' (a legitimately published set rarely selected for reporting), or 'archival' (historical/legacy basis, not accepted by any current destination).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#variant",
+        "label": "variant",
+        "curie": "ipcc:variant",
+        "kind": "DatatypeProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "The convention that, together with the edition, pins the numeric values: e.g. 'no-feedback', 'with-feedback', 'UNFCCC-7CP27', 'fossil-CH4', 'biogenic-CH4'.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#AR4",
+        "label": "IPCC AR4 GWP-100 (2007)",
+        "curie": "ipcc:AR4",
+        "kind": "GWP Value Set",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "Fourth Assessment Report GWP-100 value set. Still live: California ARB runs its emissions inventory on AR4, US EPA GHGRP reporting years RY2010–RY2023 are an AR4 archive, and Verra VCS permits AR4 conversion for pre-2021 vintages — so AR4 is permanently embedded in tradeable credit stock.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#AR5-noFeedback",
+        "label": "IPCC AR5 GWP-100, without climate–carbon feedbacks",
+        "curie": "ipcc:AR5-noFeedback",
+        "kind": "GWP Value Set",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "AR5 WG1 Table 8.A.1 GWP-100 values WITHOUT climate–carbon feedbacks. This is the GHG Protocol convention and the de-facto meaning of a bare 'AR5' tag in corporate accounting.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#AR5-UNFCCC",
+        "label": "IPCC AR5 GWP-100, UNFCCC 7/CP.27 variant",
+        "curie": "ipcc:AR5-UNFCCC",
+        "kind": "GWP Value Set",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "AR5 Table 8.A.1 GWP-100 as adopted by UNFCCC Decision 7/CP.27 for the Paris Enhanced Transparency Framework — EXCLUDING the AR5 fossil-methane value. Required for national reporting from no later than 31 Dec 2024.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#AR5-withFeedback",
+        "label": "IPCC AR5 GWP-100, with climate–carbon feedbacks",
+        "curie": "ipcc:AR5-withFeedback",
+        "kind": "GWP Value Set",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "AR5 WG1 Table 8.A.1 GWP-100 values WITH climate–carbon feedbacks. A distinct, published value set that a bare 'AR5' tag does not disambiguate from the no-feedback set.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#AR6-biogenicCH4",
+        "label": "IPCC AR6 GWP-100, non-fossil (biogenic) methane",
+        "curie": "ipcc:AR6-biogenicCH4",
+        "kind": "GWP Value Set",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "AR6 WG1 Ch.7 Table 7.15 GWP-100 using the NON-FOSSIL (biogenic) methane value — applies where methane's carbon is of biogenic origin (e.g. agriculture, landfill, biomass).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#AR6-fossilCH4",
+        "label": "IPCC AR6 GWP-100, fossil methane",
+        "curie": "ipcc:AR6-fossilCH4",
+        "kind": "GWP Value Set",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "AR6 WG1 Ch.7 Table 7.15 GWP-100 using the FOSSIL methane value. Per the GHG Protocol Aug-2024 table, the fossil-methane value applies to fugitive emissions from oil, gas and coal and to industrial processes where the carbon is of fossil origin.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#SAR",
+        "label": "IPCC SAR GWP-100 (1995)",
+        "curie": "ipcc:SAR",
+        "kind": "GWP Value Set",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "Second Assessment Report GWP-100 value set. The registry floor: transitioned CERs and Kyoto-era inventory data carry SAR-basis values and do not expire, so SAR is a live requirement, not merely archival.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#defaultHorizon",
+        "label": "default time horizon",
+        "curie": "ipcc:defaultHorizon",
+        "kind": "ObjectProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "The GWP time horizon these witness values are stated on (GWP100 unless noted). A value set is horizon-specific: GWP20 and GWP100 are different numbers from the same report.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#differsFrom",
+        "label": "differs from",
+        "curie": "ipcc:differsFrom",
+        "kind": "ObjectProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "Asserts that two value sets differ, with the specific gas(es) of difference given by ipcc:onGas on the same subject. Lets a consumer prove that two edition-sharing value sets are not interchangeable without recomputing.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#hasGWP",
+        "label": "has GWP",
+        "curie": "ipcc:hasGWP",
+        "kind": "ObjectProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "Links a value set to one witness gas/factor pair used by the arithmetic back-solve.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/vocab/ipcc-gwp#supersedes",
+        "label": "supersedes",
+        "curie": "ipcc:supersedes",
+        "kind": "ObjectProperty",
+        "prefix": "ipcc",
+        "namespace": "IPCC GWP value sets (ext)",
+        "layer": "Extension",
+        "color": "#7c5a0a",
+        "definition": "The earlier value set this one is the successor edition of (chronological lineage, not equivalence).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#QualifiedVerifier",
+        "label": "QualifiedVerifier",
+        "curie": "comet-ver:QualifiedVerifier",
         "kind": "Reference",
         "prefix": "comet-ver",
         "namespace": "Verification",
@@ -30710,9 +31947,9 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/core#Organization",
-        "label": "Organization",
-        "curie": "comet:Organization",
+        "id": "https://comet.carbon/v1/core#Site",
+        "label": "Site",
+        "curie": "comet:Site",
         "kind": "Reference",
         "prefix": "comet",
         "namespace": "Core",
@@ -30722,21 +31959,9 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/eac#RetirementEvent",
-        "label": "RetirementEvent",
-        "curie": "comet-eac:RetirementEvent",
-        "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Site",
-        "label": "Site",
-        "curie": "comet:Site",
+        "id": "https://comet.carbon/v1/core#Material",
+        "label": "Material",
+        "curie": "comet:Material",
         "kind": "Reference",
         "prefix": "comet",
         "namespace": "Core",
@@ -30758,21 +31983,9 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/pcf#LCIAResult",
-        "label": "LCIAResult",
-        "curie": "comet-pcf:LCIAResult",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/ver#QualifiedVerifier",
-        "label": "QualifiedVerifier",
-        "curie": "comet-ver:QualifiedVerifier",
+        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "label": "DisclosureRecord",
+        "curie": "comet-ver:DisclosureRecord",
         "kind": "Reference",
         "prefix": "comet-ver",
         "namespace": "Verification",
@@ -30782,9 +31995,9 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "label": "SupplyChainLink",
-        "curie": "comet-sc:SupplyChainLink",
+        "id": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "label": "Scope1Emissions",
+        "curie": "comet-sc:Scope1Emissions",
         "kind": "Reference",
         "prefix": "comet-sc",
         "namespace": "Supply Chain",
@@ -30806,9 +32019,9 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/eac#EnergyAttributeCert",
-        "label": "EnergyAttributeCert",
-        "curie": "comet-eac:EnergyAttributeCert",
+        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "label": "MaterialStewardCert",
+        "curie": "comet-eac:MaterialStewardCert",
         "kind": "Reference",
         "prefix": "comet-eac",
         "namespace": "Environmental Attribute Certificate",
@@ -30818,57 +32031,9 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "label": "DisclosureRecord",
-        "curie": "comet-ver:DisclosureRecord",
-        "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/eac#Certification",
-        "label": "Certification",
-        "curie": "comet-eac:Certification",
-        "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#GHGEmission",
-        "label": "GHGEmission",
-        "curie": "comet-pcf:GHGEmission",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/supplychain#Scope1Emissions",
-        "label": "Scope1Emissions",
-        "curie": "comet-sc:Scope1Emissions",
-        "kind": "Reference",
-        "prefix": "comet-sc",
-        "namespace": "Supply Chain",
-        "layer": "L3 · Supply Chain",
-        "color": "#6b4a1a",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Process",
-        "label": "Process",
-        "curie": "comet:Process",
+        "id": "https://comet.carbon/v1/core#Organization",
+        "label": "Organization",
+        "curie": "comet:Organization",
         "kind": "Reference",
         "prefix": "comet",
         "namespace": "Core",
@@ -30890,38 +32055,14 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/core#Material",
-        "label": "Material",
-        "curie": "comet:Material",
+        "id": "https://comet.carbon/v1/ver#DataSubstitutionRule",
+        "label": "DataSubstitutionRule",
+        "curie": "comet-ver:DataSubstitutionRule",
         "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
-        "label": "MaterialStewardCert",
-        "curie": "comet-eac:MaterialStewardCert",
-        "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#PCFResult",
-        "label": "PCFResult",
-        "curie": "comet-pcf:PCFResult",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
         "definition": "",
         "defined": false
       },
@@ -30938,6 +32079,66 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
+        "id": "https://comet.carbon/v1/core#Process",
+        "label": "Process",
+        "curie": "comet:Process",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/eac#RetirementEvent",
+        "label": "RetirementEvent",
+        "curie": "comet-eac:RetirementEvent",
+        "kind": "Reference",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "label": "SupplyChainLink",
+        "curie": "comet-sc:SupplyChainLink",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#AuditTrail",
+        "label": "AuditTrail",
+        "curie": "comet-ver:AuditTrail",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#GHGEmission",
+        "label": "GHGEmission",
+        "curie": "comet-pcf:GHGEmission",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://comet.carbon/v1/core#TimePeriod",
         "label": "TimePeriod",
         "curie": "comet:TimePeriod",
@@ -30950,6 +32151,30 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
+        "id": "https://comet.carbon/v1/pcf#PCFResult",
+        "label": "PCFResult",
+        "curie": "comet-pcf:PCFResult",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#LCIAResult",
+        "label": "LCIAResult",
+        "curie": "comet-pcf:LCIAResult",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://comet.carbon/v1/ver#ValidationRecord",
         "label": "ValidationRecord",
         "curie": "comet-ver:ValidationRecord",
@@ -30958,6 +32183,30 @@ window.COMET_ONTOLOGY = {
         "namespace": "Verification",
         "layer": "L6 · Verification",
         "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/eac#EnergyAttributeCert",
+        "label": "EnergyAttributeCert",
+        "curie": "comet-eac:EnergyAttributeCert",
+        "kind": "Reference",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/eac#Certification",
+        "label": "Certification",
+        "curie": "comet-eac:Certification",
+        "kind": "Reference",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
         "definition": "",
         "defined": false
       },
@@ -31906,6 +33155,18 @@ window.COMET_ONTOLOGY = {
         "namespace": "Product Carbon Footprint",
         "layer": "L4 · PCF",
         "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/emfactor#GWP100Value.ipccAR",
+        "label": "GWP100Value.ipccAR",
+        "curie": "comet-ef:GWP100Value.ipccAR",
+        "kind": "Reference",
+        "prefix": "comet-ef",
+        "namespace": "Emission Factor",
+        "layer": "L2 · Emission Factor",
+        "color": "#3c1a6b",
         "definition": "",
         "defined": false
       },
@@ -34864,313 +36125,8 @@ window.COMET_ONTOLOGY = {
     ],
     "edges": [
       {
-        "from": "https://comet.carbon/ext/aluminium-asi#cocModel",
-        "to": "https://comet.carbon/ext/aluminium-asi#CoCModel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
-        "to": "https://comet.carbon/v1/ver#AuditTrail",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#traceableTo",
-        "to": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/aluminium-asi#ASICertifiedEntity",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#hasFuelInput",
-        "to": "https://comet.carbon/ext/irec-e#FuelInputRecord",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr#governedByPCR",
-        "to": "https://comet.carbon/ext/pcr#PCRDocument",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasPathway",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasSubject",
-        "to": "https://comet.carbon/ext/iso14068#Subject",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
-        "to": "https://comet.carbon/v1/eac#RetirementEvent",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasAllocation",
-        "to": "https://comet.carbon/ext/tfs-pcf#AllocationApproach",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "to": "https://comet.carbon/v1/core#Site",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasVerificationShare",
-        "to": "https://comet.carbon/ext/tfs-pcf#VerificationShare",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
-        "to": "https://comet.carbon/ext/iso14068#HierarchyAction",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
-        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr#program",
-        "to": "https://comet.carbon/ext/pcr#PCRProgramOperator",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
-        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#RedemptionStatement",
-        "to": "https://comet.carbon/v1/eac#RetirementEvent",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasClaim",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#requestedLabel",
-        "to": "https://comet.carbon/ext/irec-e#LabellingScheme",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
-        "to": "https://comet.carbon/v1/pcf#PCRDocument",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/aluminium-asi#SectoralSlope",
-        "to": "https://comet.carbon/ext/aluminium-asi#GHGPathway",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
-        "to": "https://comet.carbon/v1/pcf#LCIAResult",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#Participant",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#ProductionInstallation",
-        "to": "https://comet.carbon/v1/core#Site",
-        "rel": "subClassOf"
-      },
-      {
         "from": "https://comet.carbon/ext/irec-e#ProductionAuditor",
         "to": "https://comet.carbon/v1/ver#QualifiedVerifier",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasCreditType",
-        "to": "https://comet.carbon/ext/iso14068#CreditType",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#definedByForm",
-        "to": "https://comet.carbon/ext/irec-e#StandardForm",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#VerificationAgent",
-        "to": "https://comet.carbon/v1/ver#QualifiedVerifier",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
-        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#stageType",
-        "to": "https://comet.carbon/ext/tfs-pcf#LifeCycleStage",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#OwnerDeclaration",
-        "to": "https://comet.carbon/ext/irec-e#Declaration",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/aluminium-asi#auditingFirm",
-        "to": "https://comet.carbon/v1/ver#QualifiedVerifier",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#VerificationShare",
-        "to": "https://comet.carbon/v1/ver#AuditClaim",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasReport",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#facilityOwner",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#IRECCertificate",
-        "to": "https://comet.carbon/v1/eac#EnergyAttributeCert",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#redemptionStatement",
-        "to": "https://comet.carbon/ext/irec-e#RedemptionStatement",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
-        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#Registrant",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasDataQualityRating",
-        "to": "https://comet.carbon/ext/tfs-pcf#DataQualityRating",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#attestationType",
-        "to": "https://comet.carbon/ext/tfs-pcf#AttestationType",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
-        "to": "https://comet.carbon/ext/iso14068#Baseline",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#hasInstallation",
-        "to": "https://comet.carbon/ext/irec-e#ProductionInstallation",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#accreditedForLabel",
-        "to": "https://comet.carbon/ext/irec-e#LabellingScheme",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#receivingAccount",
-        "to": "https://comet.carbon/ext/irec-e#Account",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#accountHolder",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
-        "to": "https://comet.carbon/v1/eac#Certification",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
-        "to": "https://comet.carbon/v1/pcf#GHGEmission",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/aluminium-asi#PFCAnodeEffect",
-        "to": "https://comet.carbon/v1/supplychain#Scope1Emissions",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasLifeCycleStage",
-        "to": "https://comet.carbon/ext/tfs-pcf#LifeCycleStage",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersTo",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#verifiedByAgent",
-        "to": "https://comet.carbon/ext/irec-e#VerificationAgent",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
-        "to": "https://comet.carbon/v1/core#Process",
         "rel": "subClassOf"
       },
       {
@@ -35179,63 +36135,8 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasGWPBreakdown",
-        "to": "https://comet.carbon/ext/tfs-pcf#GWPPositionBreakdown",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/aluminium-asi#certifiedSite",
-        "to": "https://comet.carbon/ext/aluminium-asi#ASICertifiedSite",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#hasDeclaration",
-        "to": "https://comet.carbon/ext/irec-e#Declaration",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
-        "to": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "to": "https://comet.carbon/v1/core#Material",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#Entity",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#IssuingDeclaration",
-        "to": "https://comet.carbon/ext/irec-e#Declaration",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#ProductionGroup",
-        "to": "https://comet.carbon/ext/irec-e#ProductionFacility",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#hasFuelConsumptionStatement",
-        "to": "https://comet.carbon/ext/irec-e#FuelConsumptionStatement",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "to": "https://comet.carbon/v1/ver#AuditClaim",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
-        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "from": "https://comet.carbon/ext/aluminium-asi#ASICertifiedSite",
+        "to": "https://comet.carbon/v1/core#Site",
         "rel": "subClassOf"
       },
       {
@@ -35244,23 +36145,83 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/irec-e#generatedByFacility",
-        "to": "https://comet.carbon/ext/irec-e#ProductionFacility",
+        "from": "https://comet.carbon/ext/iso14068#hasReport",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/irec-e#RegistrantDeclaration",
+        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "to": "https://comet.carbon/v1/core#Material",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "to": "https://comet.carbon/v1/pcf#PCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#hasGWPBreakdown",
+        "to": "https://comet.carbon/ext/tfs-pcf#GWPPositionBreakdown",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#ProductionFacility",
+        "to": "https://comet.carbon/v1/core#Site",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#AttestationOfConformance",
+        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#PFCAnodeEffect",
+        "to": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#hasFuelConsumptionStatement",
+        "to": "https://comet.carbon/ext/irec-e#FuelConsumptionStatement",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
+        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasPathway",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "to": "https://comet.carbon/v1/ver#AuditClaim",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#heldInAccount",
+        "to": "https://comet.carbon/ext/irec-e#Account",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#hasInstallation",
+        "to": "https://comet.carbon/ext/irec-e#ProductionInstallation",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#OwnerDeclaration",
         "to": "https://comet.carbon/ext/irec-e#Declaration",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/tfs-pcf#usesCharacterizationFactor",
-        "to": "https://comet.carbon/ext/tfs-pcf#CharacterizationFactor",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/aluminium-asi#ASICertifiedSite",
-        "to": "https://comet.carbon/v1/core#Site",
+        "from": "https://comet.carbon/ext/irec-e#Registrant",
+        "to": "https://comet.carbon/v1/core#Organization",
         "rel": "subClassOf"
       },
       {
@@ -35269,58 +36230,78 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/tfs-pcf#AttestationOfConformance",
-        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasCarbonContent",
-        "to": "https://comet.carbon/ext/tfs-pcf#CarbonContentBreakdown",
+        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/irec-e#heldInAccount",
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#receivingAccount",
         "to": "https://comet.carbon/ext/irec-e#Account",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/tfs-pcf#TfSProductFootprint",
-        "to": "https://comet.carbon/v1/pcf#PCFResult",
+        "from": "https://comet.carbon/ext/irec-e#redemptionStatement",
+        "to": "https://comet.carbon/ext/irec-e#RedemptionStatement",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#Entity",
+        "to": "https://comet.carbon/v1/core#Organization",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#requestsFacility",
-        "to": "https://comet.carbon/ext/irec-e#ProductionFacility",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasMassBalancing",
-        "to": "https://comet.carbon/ext/tfs-pcf#MassBalancing",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "from": "https://comet.carbon/ext/irec-e#facilityOwner",
         "to": "https://comet.carbon/v1/core#Organization",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/irec-e#fromIssueRequest",
-        "to": "https://comet.carbon/ext/irec-e#IssueRequest",
+        "from": "https://comet.carbon/ext/pcr#arBasis",
+        "to": "https://comet.carbon/ext/pcr#ARBasis",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasAttestation",
-        "to": "https://comet.carbon/ext/tfs-pcf#AttestationOfConformance",
+        "from": "https://comet.carbon/ext/tfs-pcf#hasAllocation",
+        "to": "https://comet.carbon/ext/tfs-pcf#AllocationApproach",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
-        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "from": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
+        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
+        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
+        "to": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
+        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#informedByRule",
+        "to": "https://comet.carbon/v1/ver#DataSubstitutionRule",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#reviewedByAuditor",
+        "to": "https://comet.carbon/ext/irec-e#ProductionAuditor",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
         "rel": "range"
       },
       {
@@ -35329,43 +36310,18 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasCutOffRule",
-        "to": "https://comet.carbon/ext/tfs-pcf#CutOffRule",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
-        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#Baseline",
-        "to": "https://comet.carbon/v1/pcf#PCFResult",
+        "from": "https://comet.carbon/ext/irec-e#Participant",
+        "to": "https://comet.carbon/v1/core#Organization",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/tfs-pcf#hasBoundaryDeclaration",
-        "to": "https://comet.carbon/ext/tfs-pcf#PartialFullPcf",
+        "from": "https://comet.carbon/ext/tfs-pcf#hasMassBalancing",
+        "to": "https://comet.carbon/ext/tfs-pcf#MassBalancing",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
-        "to": "https://comet.carbon/v1/market#CarbonPremium",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#reviewedByAuditor",
-        "to": "https://comet.carbon/ext/irec-e#ProductionAuditor",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/irec-e#hasProductionPeriod",
-        "to": "https://comet.carbon/v1/core#TimePeriod",
+        "from": "https://comet.carbon/ext/tfs-pcf#hasVerificationShare",
+        "to": "https://comet.carbon/ext/tfs-pcf#VerificationShare",
         "rel": "range"
       },
       {
@@ -35374,13 +36330,173 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/irec-e#ProductionFacility",
-        "to": "https://comet.carbon/v1/core#Site",
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersTo",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#governedByPCR",
+        "to": "https://comet.carbon/ext/pcr#PCRDocument",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/aluminium-asi#ASICertification",
-        "to": "https://comet.carbon/v1/ver#ValidationRecord",
+        "from": "https://comet.carbon/ext/irec-e#verifiedByAgent",
+        "to": "https://comet.carbon/ext/irec-e#VerificationAgent",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#RedemptionStatement",
+        "to": "https://comet.carbon/v1/eac#RetirementEvent",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#definedByForm",
+        "to": "https://comet.carbon/ext/irec-e#StandardForm",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#gwpValueSet",
+        "to": "https://comet.carbon/vocab/ipcc-gwp#GWPValueSet",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#generatedByFacility",
+        "to": "https://comet.carbon/ext/irec-e#ProductionFacility",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#accountHolder",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
+        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/vocab/ipcc-gwp#supersedes",
+        "to": "https://comet.carbon/vocab/ipcc-gwp#GWPValueSet",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#traceableTo",
+        "to": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#cocModel",
+        "to": "https://comet.carbon/ext/aluminium-asi#CoCModel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#RegistrantDeclaration",
+        "to": "https://comet.carbon/ext/irec-e#Declaration",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
+        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "to": "https://comet.carbon/v1/ver#AuditTrail",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#VerificationAgent",
+        "to": "https://comet.carbon/v1/ver#QualifiedVerifier",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
+        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "to": "https://comet.carbon/v1/pcf#GHGEmission",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#hasProductionPeriod",
+        "to": "https://comet.carbon/v1/core#TimePeriod",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#auditingFirm",
+        "to": "https://comet.carbon/v1/ver#QualifiedVerifier",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#FinancialInstitution",
+        "to": "https://comet.carbon/ext/iso14068#Entity",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#hasDeclaration",
+        "to": "https://comet.carbon/ext/irec-e#Declaration",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
+        "to": "https://comet.carbon/v1/eac#RetirementEvent",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#hasFuelInput",
+        "to": "https://comet.carbon/ext/irec-e#FuelInputRecord",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
+        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#Baseline",
+        "to": "https://comet.carbon/v1/pcf#PCFResult",
         "rel": "subClassOf"
       },
       {
@@ -35389,9 +36505,189 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#FinancialInstitution",
-        "to": "https://comet.carbon/ext/iso14068#Entity",
+        "from": "https://comet.carbon/ext/tfs-pcf#hasCutOffRule",
+        "to": "https://comet.carbon/ext/tfs-pcf#CutOffRule",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
+        "to": "https://comet.carbon/v1/core#Process",
         "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#requestedLabel",
+        "to": "https://comet.carbon/ext/irec-e#LabellingScheme",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
+        "to": "https://comet.carbon/v1/pcf#LCIAResult",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#ProductionGroup",
+        "to": "https://comet.carbon/ext/irec-e#ProductionFacility",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#program",
+        "to": "https://comet.carbon/ext/pcr#PCRProgramOperator",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#stageType",
+        "to": "https://comet.carbon/ext/tfs-pcf#LifeCycleStage",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#usesCharacterizationFactor",
+        "to": "https://comet.carbon/ext/tfs-pcf#CharacterizationFactor",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#certifiedSite",
+        "to": "https://comet.carbon/ext/aluminium-asi#ASICertifiedSite",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#ASICertification",
+        "to": "https://comet.carbon/v1/ver#ValidationRecord",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#hasLifeCycleStage",
+        "to": "https://comet.carbon/ext/tfs-pcf#LifeCycleStage",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#hasAttestation",
+        "to": "https://comet.carbon/ext/tfs-pcf#AttestationOfConformance",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/vocab/ipcc-gwp#defaultHorizon",
+        "to": "https://comet.carbon/ext/pcr#GWPHorizon",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#VerificationShare",
+        "to": "https://comet.carbon/v1/ver#AuditClaim",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#IRECCertificate",
+        "to": "https://comet.carbon/v1/eac#EnergyAttributeCert",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasClaim",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#gwpHorizon",
+        "to": "https://comet.carbon/ext/pcr#GWPHorizon",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasCreditType",
+        "to": "https://comet.carbon/ext/iso14068#CreditType",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#attestationType",
+        "to": "https://comet.carbon/ext/tfs-pcf#AttestationType",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#ProductionInstallation",
+        "to": "https://comet.carbon/v1/core#Site",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
+        "to": "https://comet.carbon/ext/iso14068#Baseline",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#hasCarbonContent",
+        "to": "https://comet.carbon/ext/tfs-pcf#CarbonContentBreakdown",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#hasDataQualityRating",
+        "to": "https://comet.carbon/ext/tfs-pcf#DataQualityRating",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasSubject",
+        "to": "https://comet.carbon/ext/iso14068#Subject",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "to": "https://comet.carbon/v1/core#Site",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
+        "to": "https://comet.carbon/ext/iso14068#HierarchyAction",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#hasBoundaryDeclaration",
+        "to": "https://comet.carbon/ext/tfs-pcf#PartialFullPcf",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/tfs-pcf#TfSProductFootprint",
+        "to": "https://comet.carbon/v1/pcf#PCFResult",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#SectoralSlope",
+        "to": "https://comet.carbon/ext/aluminium-asi#GHGPathway",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#IssuingDeclaration",
+        "to": "https://comet.carbon/ext/irec-e#Declaration",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#ASICertifiedEntity",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
+        "to": "https://comet.carbon/v1/eac#Certification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/vocab/ipcc-gwp#differsFrom",
+        "to": "https://comet.carbon/vocab/ipcc-gwp#GWPValueSet",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#requestsFacility",
+        "to": "https://comet.carbon/ext/irec-e#ProductionFacility",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#accreditedForLabel",
+        "to": "https://comet.carbon/ext/irec-e#LabellingScheme",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/irec-e#fromIssueRequest",
+        "to": "https://comet.carbon/ext/irec-e#IssueRequest",
+        "rel": "range"
       },
       {
         "from": "https://comet.carbon/v1/pcf#PCFResult",
@@ -35611,6 +36907,11 @@ window.COMET_ONTOLOGY = {
       {
         "from": "https://comet.carbon/ext/pcr#PCRDocument",
         "to": "https://comet.carbon/v1/pcf#PCRReference",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#gwpValueSet",
+        "to": "https://comet.carbon/v1/emfactor#GWP100Value.ipccAR",
         "rel": "closeMatch"
       },
       {
@@ -38405,6 +39706,16 @@ window.COMET_ONTOLOGY = {
       "target_term": "PCRReference",
       "target_iri": "https://comet.carbon/v1/pcf#PCRReference",
       "note": "Reifies the single comet-pcf:PCRReference stub into a structured, versioned entity."
+    },
+    {
+      "comet_curie": "comet-pcr:gwpValueSet",
+      "comet_local": "gwpValueSet",
+      "relation": "closeMatch",
+      "target_standard": "comet-ef",
+      "target_prefix": "comet-ef",
+      "target_term": "GWP100Value.ipccAR",
+      "target_iri": "https://comet.carbon/v1/emfactor#GWP100Value.ipccAR",
+      "note": "Replaces the closed Enum(AR5, AR6). Keying on the value set, not the edition, lets COMET describe factors PACT's enum cannot express (SAR, AR4, variant sets); the export layer, not the ontology, decides what each destination accepts."
     },
     {
       "comet_curie": "comet-rs:AnnualEmissionsReport",
@@ -42030,14 +43341,14 @@ window.COMET_ONTOLOGY = {
     }
   ],
   "stats": {
-    "terms": 1240,
-    "classes": 196,
-    "properties": 278,
+    "terms": 1277,
+    "classes": 199,
+    "properties": 299,
     "fields": 649,
-    "alignments": 409,
+    "alignments": 410,
     "schema_fields": 80,
-    "namespaces": 16,
-    "graph_nodes": 938,
-    "graph_edges": 454
+    "namespaces": 17,
+    "graph_nodes": 977,
+    "graph_edges": 462
   }
 };
